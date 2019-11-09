@@ -77,8 +77,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="scalingPercent" value="85" />
-                                                <entry key="trimmed" value="true" />
+                                                <entry key="scalingPercent" value="43" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -88,9 +87,10 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="backgroundColor" value="ff0014" />
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="292aa6" />
                                       <entry key="backgroundImage" value="C:\Users\ASUS\Desktop\banner-wave-3.svg" />
-                                      <entry key="foregroundImage" value="C:\Users\ASUS\Desktop\image-20190920071945-1.png" />
+                                      <entry key="foregroundImage" value="C:\Users\ASUS\Desktop\images\image-20190920071945-1.png" />
                                     </map>
                                   </option>
                                 </PersistentState>

@@ -5,23 +5,18 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E9EDF1"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="#D4D4D4">
+        app:cardBackgroundColor="#9C9696">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                app:srcCompat="@mipmap/ic_launcher" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -33,7 +28,8 @@
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -43,7 +39,8 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp">
+        android:layout_marginTop="0dp"
+        app:cardBackgroundColor="#012180">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -51,10 +48,14 @@
 
             <Button
                 android:id="@+id/btnLookup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@android:style/Widget.Material.Button"
+                android:layout_width="93dp"
+                android:layout_height="40dp"
+                android:background="#D61602"
                 android:onClick="Tracuu"
                 android:text="Tra cứu"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editMSSV" />
@@ -66,6 +67,7 @@
                 android:layout_marginTop="8dp"
                 android:text="Nhập vào mã HSSV:"
                 android:textAlignment="center"
+                android:textColor="#FAD666"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +80,9 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="numberSigned"
+                android:singleLine="true"
                 android:textAlignment="center"
+                android:textColor="#FDF8D8"
                 android:textSize="23sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -101,6 +105,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:textAlignment="center"
+                android:textColor="#FFFFFF"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -114,7 +119,6 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="16dp" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

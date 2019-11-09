@@ -4,38 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFC107"
-    app:cardBackgroundColor="#3F51B5">
+    android:clickable="true"
+    app:cardBackgroundColor="#012180"
+    app:cardCornerRadius="2.5dp"
+    app:cardElevation="2dp"
+    app:contentPadding="0.5dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/txtSubject"
-        app:layout_constraintTop_toBottomOf="@+id/txtSubject">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/txtSubject"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:text="TextView"
             android:textColor="#FCEE75"
             android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtMatch"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
             android:text="TextView"
-            android:textColor="#F84D42"
+            android:textAlignment="textEnd"
+            android:textAllCaps="false"
+            android:textColor="#FA3A3A"
             android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:textStyle="bold" />
+    </LinearLayout>
 </androidx.cardview.widget.CardView>

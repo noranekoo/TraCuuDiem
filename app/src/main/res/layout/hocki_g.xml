@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="#840A99">
+    app:cardBackgroundColor="#4A0157"
+    app:cardCornerRadius="2.5dp"
+    app:contentPadding="0.5dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout3"

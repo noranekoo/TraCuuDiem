@@ -14,6 +14,7 @@ import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -29,12 +30,12 @@ import java.net.URLEncoder;
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String> {
     EditText edit;
     TextView info;
-    String data;
     RecyclerView rcv;
     DataAdapter mAdapter;
     ProgressBar progressBar;
     ArrayList<ChiTietDiem> Mon;
     boolean doublePress = false;
+    private final int DELAY_TIME = 3500;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         progressBar.setVisibility(View.INVISIBLE);
         Mon = new ArrayList<>();
         info = findViewById(R.id.txtInfo);
-        data = "";
         rcv = findViewById(R.id.recyclerView);
         mAdapter = new DataAdapter(Mon);
         rcv.setAdapter(mAdapter);
@@ -53,14 +53,23 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public void onBackPressed() {
-        Toast.makeText(this, "Nhấn lần nữa để thoát", Toast.LENGTH_SHORT).show();
         if(doublePress){
             super.onBackPressed();
         }
-        doublePress = !doublePress;
+        else{
+            doublePress = true;
+            Toast.makeText(this, "Nhấn lần nữa để thoát", Toast.LENGTH_SHORT).show();
+        }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doublePress = false;
+            }
+        },DELAY_TIME);
+
     }
 
-    void loadData() {
+    void loadInfo(Bundle args) {
         ConnectivityManager connectivityManager =
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = null;
@@ -69,9 +78,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
         if (info != null && info.isConnected()) {
             if (getSupportLoaderManager().getLoader(0) != null) {
-                getSupportLoaderManager().restartLoader(0, null, this);
+                getSupportLoaderManager().restartLoader(0,args.getBundle("bun") , this);
             }
-            getSupportLoaderManager().initLoader(0, null, this);
+            getSupportLoaderManager().initLoader(0, args.getBundle("bun"), this);
         } else{
             taoThongBao("Không thể kết nối đến server").show();
             this.progressBar.setVisibility(View.INVISIBLE);
@@ -95,7 +104,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @NonNull
     @Override
     public Loader<String> onCreateLoader(int id, @Nullable Bundle args) {
-        return new DataLoader(this,this.data);
+        if(args != null)
+            return new DataLoader(this,args.getString("data"));
+        return null;
     }
 
     @Override
@@ -105,12 +116,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             progressBar.setVisibility(View.INVISIBLE);
             return;
         }
-        if(data == null)
-        {
-            taoThongBao("Có lỗi khi kết nối kết server").show();
-            progressBar.setVisibility(View.INVISIBLE);
-            return;
-        }
+//        if(data == null)
+//        {
+//            taoThongBao("Có lỗi khi kết nối kết server").show();
+//            progressBar.setVisibility(View.INVISIBLE);
+//            return;
+//        }
 
         int index = data.indexOf("Mã HSSV: ");
         data = data.substring(index);
@@ -194,16 +205,19 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void Tracuu(View view) {
         rcv.setVisibility(View.INVISIBLE);
         Mon.clear();
+        info.setText("");
         if(edit.getText().length() == 0)
         {
             taoThongBao("Vui lòng điền đầy đủ thông tin").show();
         }
         else
         {
-            this.data =
-                    URLEncoder.encode("txtMaHSSV")+"="+URLEncoder.encode(this.edit.getText().toString());
             progressBar.setVisibility(View.VISIBLE);
-            loadData();
+            Bundle data = new Bundle();
+            data.putString("data",
+                    URLEncoder.encode("txtMaHSSV")+"="+URLEncoder.encode(this.edit.getText().toString()));
+            data.putBundle("bun",data);
+            loadInfo(data);
         }
     }
 }

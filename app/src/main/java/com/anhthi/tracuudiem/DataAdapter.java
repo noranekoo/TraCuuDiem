@@ -72,7 +72,7 @@ public class DataAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     void guiDuLieuMonHoc(MonHocHolder holder, int position){
         holder.txtMon.setText(mMon.get(position).getTenMon());
-        holder.txtDiem.setText(mMon.get(position).getDiem());
+        holder.txtDiem.setText("Điểm: "+mMon.get(position).getDiem());
     }
     void LayHocKi(HocKiHolder holder, int position){
         holder.txtHK.setText("HỌC KÌ "+mMon.get(position).getHocki());
