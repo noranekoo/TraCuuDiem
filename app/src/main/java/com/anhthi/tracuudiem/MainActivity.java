@@ -9,6 +9,7 @@ import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.ConnectivityManager;
@@ -89,16 +90,16 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
     private AlertDialog taoThongBao(String m) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(m).setTitle("Lỗi");
-        builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //moveTaskToBack(true);
+        return builder.setMessage(m)
+                .setTitle("Lỗi")
+                .setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //moveTaskToBack(true);
 //                android.os.Process.killProcess(android.os.Process.myPid());
 //                System.exit(1);
-            }
-        });
-        return builder.create();
+                    }
+                }).create();
     }
 
     @NonNull
