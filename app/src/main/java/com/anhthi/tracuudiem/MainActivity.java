@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         SinhVien sv = getInfo(data);
         ArrayList<ChiTietDiem> a = getRows(data);
         String c = "MSSV: "+sv.getId()+"\nHọ tên: "+sv.getName()+"\nQuê quán: "+sv.getHomeTown()+
-                "\n";
+                "\n"+"Lớp-ngành: "+sv.getClassName()+"\n";
         for(ChiTietDiem b:a){
             this.Mon.add(new ChiTietDiem(b.getHocki(),b.getStt(),b.getTenMon(),b.getDonViHP(),
                     b.getDiem()));
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         String diem = null;
         for(String s:m){
             if(s.contains("HỌC KÌ")){
-                i =-1;
+                i = -1;
                 j++;
                 result.add(new ChiTietDiem(j,0,null,null,null));
             }
@@ -189,7 +189,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             String value = m.group(2);
             if(value.equals("STT"))
             {i++;s.add("HỌC KÌ "+i);}
-            if(!value.equals("Ghi Chú") && !value.equals("Tổng Kết") && !value.equals("ĐVHP") && !value.equals("Tên Môn Học") && !value.equals("STT")){ {
+            if(     !value.equals("Ghi Chú")
+                    && !value.equals("Tổng Kết")
+                    && !value.equals("ĐVHP")
+                    && !value.equals("Tên Môn Học")
+                    && !value.equals("STT")){ {
                 if(!value.equals("&nbsp;")){
                     s.add(value);
                 }

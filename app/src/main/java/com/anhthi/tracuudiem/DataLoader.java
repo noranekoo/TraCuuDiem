@@ -24,11 +24,9 @@ public class DataLoader extends AsyncTaskLoader<String> {
     public String loadInBackground() {
         String text = "";
         BufferedReader reader=null;
-
         // Send data
         try
         {
-
             // Defined URL  where to send data
             URL url = new URL(BASE_URL);
 
@@ -41,7 +39,6 @@ public class DataLoader extends AsyncTaskLoader<String> {
             wr.flush();
 
             // Get the server response
-
             reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             StringBuilder sb = new StringBuilder();
             String line = null;
